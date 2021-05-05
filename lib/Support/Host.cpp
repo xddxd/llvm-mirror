@@ -957,9 +957,13 @@ getAMDProcessorTypeAndSubtype(unsigned Family, unsigned Model,
     break;
   // Treat Zen3 as Zen2 until upstream adds Zen3 support
   case 25:
-    CPU = "znver2";
-    *Type = X86::AMDFAM17H;
-    *Subtype = X86::AMDFAM17H_ZNVER2;
+    CPU = "znver3";
+    *Type = X86::AMDFAM19H;
+    if (Model <= 0x0f) {
+      *Subtype = X86::AMDFAM19H_ZNVER3;
+      break; // 00h-0Fh: Zen3
+    }
+    break;
   default:
     break; // Unknown AMD CPU.
   }

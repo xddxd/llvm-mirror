@@ -269,6 +269,9 @@ static constexpr FeatureBitset FeaturesZNVER1 =
     FeatureXSAVEOPT | FeatureXSAVES;
 static constexpr FeatureBitset FeaturesZNVER2 =
     FeaturesZNVER1 | FeatureCLWB | FeatureRDPID | FeatureWBNOINVD;
+static constexpr FeatureBitset FeaturesZNVER3 = FeaturesZNVER2 |
+                                                FeatureINVPCID | FeaturePKU |
+                                                FeatureVAES | FeatureVPCLMULQDQ;
 
 static constexpr ProcInfo Processors[] = {
   // Empty processor. Include X87 and CMPXCHG8 for backwards compatibility.
@@ -379,6 +382,7 @@ static constexpr ProcInfo Processors[] = {
   // Zen architecture processors.
   { {"znver1"}, CK_ZNVER1, FEATURE_AVX2, FeaturesZNVER1 },
   { {"znver2"}, CK_ZNVER2, FEATURE_AVX2, FeaturesZNVER2 },
+  { {"znver3"}, CK_ZNVER3, FEATURE_AVX2, FeaturesZNVER3 },
   // Generic 64-bit processor.
   { {"x86-64"}, CK_x86_64, ~0U, FeaturesX86_64 },
   // Geode processors.

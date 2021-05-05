@@ -492,6 +492,7 @@ defm WriteVarShuffle256 : X86SchedWritePair<ReadAfterVecYLd>; // 256-bit width v
 defm WriteVarVecShift  : X86SchedWritePair<ReadAfterVecXLd>; // Variable vector shifts.
 defm WriteVarVecShiftY : X86SchedWritePair<ReadAfterVecYLd>; // Variable vector shifts (YMM).
 defm WriteVarVecShiftZ : X86SchedWritePair<ReadAfterVecYLd>; // Variable vector shifts (ZMM).
+defm WriteVPMOV256 : X86SchedWritePair<ReadAfterVecYLd>; // 256-bit width packed vector width-changing move.
 
 // Old microcoded instructions that nobody use.
 def WriteMicrocoded : SchedWrite;

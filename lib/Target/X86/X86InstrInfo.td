@@ -2907,14 +2907,15 @@ def : InstAlias<"clzero\t{%rax|rax}", (CLZERO64r)>, Requires<[In64BitMode]>;
 //===----------------------------------------------------------------------===//
 // SERIALIZE Instruction
 //
-def SERIALIZE : I<0x01, MRM_E8, (outs), (ins), "serialize",
-                  [(int_x86_serialize)]>, PS,
-                  Requires<[HasSERIALIZE]>;
+let SchedRW = [WriteSystem] in
+  def SERIALIZE : I<0x01, MRM_E8, (outs), (ins), "serialize",
+                    [(int_x86_serialize)]>, PS,
+                    Requires<[HasSERIALIZE]>;
 
 //===----------------------------------------------------------------------===//
 // TSXLDTRK - TSX Suspend Load Address Tracking
 //
-let Predicates = [HasTSXLDTRK] in {
+let Predicates = [HasTSXLDTRK], SchedRW = [WriteSystem] in {
   def XSUSLDTRK : I<0x01, MRM_E8, (outs), (ins), "xsusldtrk",
                     [(int_x86_xsusldtrk)]>, XD;
   def XRESLDTRK : I<0x01, MRM_E9, (outs), (ins), "xresldtrk",
